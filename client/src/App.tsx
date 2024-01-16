@@ -1,9 +1,14 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import LeftNavBar from './components/organism/nav/LeftNavBar';
 
 function App() {
   return (
-    <div className="App">
-      <h1>setting</h1>
-    </div>
+    <BrowserRouter>
+      <div className='App'>
+        <LeftNavBar />
+      </div>
+    </BrowserRouter>
   );
 }
 
