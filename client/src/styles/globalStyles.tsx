@@ -1,10 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
-
-    @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
-
     :root {
         --gowun: 'Gowun Dodum', sans-serif;
         --noto: 'Noto Sans KR', sans-serif;
@@ -38,6 +34,8 @@ export const GlobalStyles = createGlobalStyle`
 	}
 	body {
 		line-height: 1;
+		background-color: #f2f4f7;
+		font-family: var(--noto);
 	}
 	ol, ul, li {
 		list-style: none;
@@ -53,11 +51,6 @@ export const GlobalStyles = createGlobalStyle`
 	table {
 		border-collapse: collapse;
 		border-spacing: 0;
-	}
-	html {
-        font-size: 62.5%;
-		font-family: 'NotoSans';
-		overflow-x: hidden;
 	}
 	img {
 		width: 100%;

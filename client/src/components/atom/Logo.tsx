@@ -16,17 +16,15 @@ export const Logo = () => {
 
 export const LogoBox = styled.div`
   color: black;
-  margin: 30px;
-  padding: 15px;
-  font-family: var(--gowun);
+  padding: 0 40px;
+  font-family: 'Gowun Dodum', sans-serif;
   font-size: 40px;
   font-style: italic;
   cursor: pointer;
   user-select: none;
 
   p {
-    padding: 0px 20px;
-
+    text-align: center;
     span {
       padding: 0px 25px;
     }

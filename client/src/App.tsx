@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import LeftNavBar from './components/organism/nav/LeftNavBar';
+import LeftNavBar from './components/organism/LeftNavBar';
 
 function App() {
   return (

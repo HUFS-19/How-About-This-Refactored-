@@ -22,6 +22,14 @@ const AccountArea = () => {
   );
 };
 
-export const StyledAccountArea = styled.div``;
+export const StyledAccountArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > * {
+    margin-bottom: 10px;
+  }
+`;
 
 export default AccountArea;
