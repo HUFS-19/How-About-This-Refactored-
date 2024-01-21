@@ -1,14 +1,12 @@
 import './utils/variables.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import LeftNavBar from './components/organism/LeftNavBar';
-import TopBar from './components/organism/TopBar';
+import Bars from './components/template/Bars';
 
 function App() {
   return (
     <BrowserRouter>
       <div className='App'>
-        <LeftNavBar />
-        <TopBar />
+        <Bars />
       </div>
     </BrowserRouter>
   );

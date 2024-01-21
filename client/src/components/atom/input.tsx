@@ -10,7 +10,7 @@ interface InputProps {
   width?: string;
 }
 
-export const Input = ({
+const Input = ({
   type,
   placeholder,
   onChange,
@@ -45,3 +45,5 @@ const StyledInput = styled.input`
     outline: none;
   }
 `;
+
+export default Input;

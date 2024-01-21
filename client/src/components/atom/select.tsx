@@ -6,7 +6,7 @@ interface SelectProps {
   onChange?: eventFunction;
 }
 
-export const Select = ({ options, onChange }: SelectProps) => {
+const Select = ({ options, onChange }: SelectProps) => {
   return (
     <StyledSelect onChange={onChange}>
       {options.map((option) => {
@@ -32,3 +32,5 @@ const StyledSelect = styled.select`
     outline: none;
   }
 `;
+
+export default Select;
