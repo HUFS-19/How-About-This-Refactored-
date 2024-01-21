@@ -2,26 +2,24 @@ import styled from 'styled-components';
 
 type directionType = 'column' | 'row';
 type justifyContentType =
-  | 'flex-start'
-  | 'flex-end'
+  | 'start'
+  | 'end'
   | 'center'
-  | 'left'
-  | 'right'
   | 'space-between'
   | 'space-evenly'
   | 'space-around';
-
+type alignItemsType = 'center' | 'start' | 'end' | 'stretch';
 type positionType = 'relative' | 'absolute' | 'fixed' | 'static';
 
 interface FlexBoxProps {
   children: JSX.Element | JSX.Element[];
   flexDirection?: directionType;
   justifyContent?: justifyContentType;
-  alignItems?: string;
+  alignItems?: alignItemsType;
   position?: positionType;
 }
 
-export const FlexBox = ({
+const FlexBox = ({
   children,
   flexDirection,
   justifyContent,
@@ -44,3 +42,5 @@ export const FlexBox = ({
 };
 
 const StyledFlexBox = styled.div``;
+
+export default FlexBox;
