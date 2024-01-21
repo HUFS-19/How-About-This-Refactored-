@@ -5,8 +5,6 @@ type justifyContentType =
   | 'start'
   | 'end'
   | 'center'
-  | 'left'
-  | 'right'
   | 'space-between'
   | 'space-evenly'
   | 'space-around';
