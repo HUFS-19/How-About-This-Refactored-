@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
 import Logo from '../atom/Logo';
-import AccountArea from '../molecule/AccountArea';
+import NavLogin from '../molecule/NavLogin';
+import NavProfile from '../molecule/NavProfile';
 import CategoryList from '../molecule/CategoryList';
+
+// todo: 로그인 여부에 따라 LavLogin/LavProfile 변경
 
 const LeftNavBar = () => {
   return (
     <StyledLeftNavBar>
       <Logo />
-      <AccountArea />
+      <NavProfile />
       <CategoryList />
     </StyledLeftNavBar>
   );
