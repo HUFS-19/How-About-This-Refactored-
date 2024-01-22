@@ -5,6 +5,9 @@ interface CategoryProps {
   cateName: string;
 }
 
+//todo: CategoryList 받아오기
+//todo: 카테고리 선택 가능하게 변경
+
 const CategoryList = () => {
   const categories: CategoryProps[] = [
     { cateId: 1, cateName: '패션' },

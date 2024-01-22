@@ -1,9 +1,9 @@
 import Button from '../atom/Button';
 import styled from 'styled-components';
 
-const AccountArea = () => {
+const NavLogin = () => {
   return (
-    <StyledAccountArea>
+    <StyledNavLogin>
       <Button
         id='LoginBtn'
         text='로그인'
@@ -18,11 +18,11 @@ const AccountArea = () => {
         width='130px'
         height='35px'
       />
-    </StyledAccountArea>
+    </StyledNavLogin>
   );
 };
 
-export const StyledAccountArea = styled.div`
+export const StyledNavLogin = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,4 +32,4 @@ export const StyledAccountArea = styled.div`
   }
 `;
 
-export default AccountArea;
+export default NavLogin;

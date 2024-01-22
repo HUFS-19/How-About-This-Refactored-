@@ -65,7 +65,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
   border-radius: 5px;
   width: ${(props) => props.width || 'auto'};
   height: ${(props) => props.height || 'auto'};
-  shadow: none;
   cursor: pointer;
   text-align: center;
   font-family: var(--noto);
