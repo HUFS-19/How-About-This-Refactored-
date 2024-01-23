@@ -9,7 +9,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const TopBar = () => {
   return (
-    <Wrapper width='100%' padding='10px' zIndex='-1'>
+    <Wrapper width='100%' padding='10px'>
       <FlexBox justifyContent='center'>
         <Select
           options={categories.map((category: string, index: number) => {
