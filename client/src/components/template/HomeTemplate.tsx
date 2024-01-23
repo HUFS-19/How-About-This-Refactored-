@@ -1,12 +1,16 @@
 import styled from 'styled-components';
 import LeftNavBar from '../organism/LeftNavBar';
 import TopBar from '../organism/TopBar';
+import MainBox from '../organism/MainBox';
 
-const Bars = () => {
+const HomeTemplate = () => {
   return (
     <StyledBars>
       <LeftNavBar />
-      <TopBar />
+      <StyledDiv>
+        <TopBar />
+        <MainBox />
+      </StyledDiv>
     </StyledBars>
   );
 };
@@ -17,4 +21,10 @@ const StyledBars = styled.div`
   align-items: start;
 `;
 
-export default Bars;
+const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+
+export default HomeTemplate;
