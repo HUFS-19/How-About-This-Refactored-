@@ -1,14 +1,20 @@
-import FlexBox from '../atom/FlexBox';
+import styled from 'styled-components';
 import LeftNavBar from '../organism/LeftNavBar';
 import TopBar from '../organism/TopBar';
 
 const Bars = () => {
   return (
-    <FlexBox justifyContent='start' alignItems='start'>
+    <StyledBars>
       <LeftNavBar />
       <TopBar />
-    </FlexBox>
+    </StyledBars>
   );
 };
+
+const StyledBars = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: start;
+`;
 
 export default Bars;
