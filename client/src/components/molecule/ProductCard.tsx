@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import ProductImg from '../atom/ProductImg';
+import CardImg from '../atom/CardImg';
 import HeartIcon from '../atom/HeartIcon';
-import MediumText from '../atom/MediumText';
+import CardBottom from '../atom/CardBottom';
 
 interface ProductCardProps {
   name: string;
@@ -11,9 +11,9 @@ interface ProductCardProps {
 const ProductCard = ({ name, imgSrc }: ProductCardProps) => {
   return (
     <StyledProductCard>
-      <ProductImg src={imgSrc} />
+      <CardImg src={imgSrc} width='100%' height='270px' />
       <HeartIcon />
-      <MediumText text={name} />
+      <CardBottom text={name} />
     </StyledProductCard>
   );
 };
@@ -24,7 +24,7 @@ const StyledProductCard = styled.div`
   display: flex;
   flex-direction: column;
   border: 2px solid var(--light-grey-color);
-  border-radius: 3px;
+  border-radius: 5px;
   cursor: pointer;
   overflow: hidden;
 `;
