@@ -1,9 +1,14 @@
+import './utils/variables.scss';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomeTemplate from './components/template/HomeTemplate';
 
 function App() {
   return (
-    <div className="App">
-      <h1>setting</h1>
-    </div>
+    <BrowserRouter>
+      <div className='App'>
+        <HomeTemplate />
+      </div>
+    </BrowserRouter>
   );
 }
 
