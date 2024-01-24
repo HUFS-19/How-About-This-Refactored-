@@ -1,1 +1,3 @@
-export type eventFunction = (e: React.ChangeEvent | React.KeyboardEvent) => any;
+export type eventFunction = (
+  e: React.ChangeEvent | React.KeyboardEvent | React.MouseEvent,
+) => any;

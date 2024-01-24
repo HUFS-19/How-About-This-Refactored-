@@ -17,7 +17,7 @@ const StyledTopBar = styled.div`
   width: 100%;
   padding: 10px;
   background-color: white;
-  box-shadow: 0px 5px 0px 0px var(--light-grey-color);
+  box-shadow: var(--bar-shadow);
   border-left: 3px solid var(--light-grey-color);
 `;
 
