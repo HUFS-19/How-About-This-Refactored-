@@ -25,7 +25,7 @@ export const StyledLeftNavBar = styled.div`
   box-shadow: 1px 0px 10px lightgray;
 
   & > * {
-    margin-bottom: 70px;
+    margin-bottom: 40px;
   }
 `;
 
