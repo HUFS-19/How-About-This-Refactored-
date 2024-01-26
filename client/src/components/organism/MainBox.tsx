@@ -57,6 +57,8 @@ const StyledMainBox = styled.div`
   padding-top: 60px;
   padding-left: 90px;
   padding-right: 90px;
+  margin-left: 270px;
+  margin-top: 55px;
 `;
 
 export default MainBox;

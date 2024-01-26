@@ -12,10 +12,13 @@ const TopBar = () => {
 };
 
 const StyledTopBar = styled.div`
+  position: fixed;
+  left: 270px;
+  width: 100%;
   display: flex;
   justify-content: center;
-  width: 100%;
   padding: 10px;
+  padding-right: 17%;
   background-color: white;
   box-shadow: var(--bar-shadow);
   border-left: 3px solid var(--light-grey-color);
