@@ -19,6 +19,8 @@ const LeftNavBar = () => {
 
 export const StyledLeftNavBar = styled.div`
   position: fixed;
+  top: 0;
+  z-index: 1;
   background-color: white;
   width: 270px;
   height: 100vh;

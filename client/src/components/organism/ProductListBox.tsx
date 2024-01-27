@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import ProductListTitle from '../molecule/ProductListTitle';
 import ProductList from '../molecule/ProductList';
 
@@ -44,21 +43,13 @@ const products = [
   },
 ];
 
-const MainBox = () => {
+const ProductListBox = () => {
   return (
-    <StyledMainBox>
+    <>
       <ProductListTitle />
       <ProductList children={products} />
-    </StyledMainBox>
+    </>
   );
 };
 
-const StyledMainBox = styled.div`
-  padding-top: 60px;
-  padding-left: 90px;
-  padding-right: 90px;
-  margin-left: 270px;
-  margin-top: 55px;
-`;
-
-export default MainBox;
+export default ProductListBox;

@@ -1,30 +1,16 @@
-import styled from 'styled-components';
 import LeftNavBar from '../organism/LeftNavBar';
 import TopBar from '../organism/TopBar';
-import MainBox from '../organism/MainBox';
+import MainBox from '../atom/MainBox';
+import ProductListBox from '../organism/ProductListBox';
 
 const HomeTemplate = () => {
   return (
-    <StyledBars>
+    <>
       <LeftNavBar />
-      <StyledDiv>
-        <TopBar />
-        <MainBox />
-      </StyledDiv>
-    </StyledBars>
+      <TopBar />
+      <MainBox children={ProductListBox()} />
+    </>
   );
 };
-
-const StyledBars = styled.div`
-  display: flex;
-  justify-content: start;
-  align-items: start;
-`;
-
-const StyledDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
 
 export default HomeTemplate;

@@ -13,7 +13,9 @@ const TopBar = () => {
 
 const StyledTopBar = styled.div`
   position: fixed;
+  top: 0;
   left: 270px;
+  z-index: 1;
   width: 100%;
   display: flex;
   justify-content: center;
