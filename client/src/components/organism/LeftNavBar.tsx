@@ -18,12 +18,14 @@ const LeftNavBar = () => {
 };
 
 export const StyledLeftNavBar = styled.div`
+  position: fixed;
+  top: 0;
+  z-index: 1;
   background-color: white;
   width: 270px;
   height: 100vh;
   padding: 50px 0;
   box-shadow: 1px 0px 10px lightgray;
-
   & > * {
     margin-bottom: 40px;
   }
