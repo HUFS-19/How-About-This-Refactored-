@@ -11,7 +11,6 @@ const MediumText = ({ text }: MediumTextProps) => {
 const StyledMediumText = styled.p`
   font-family: var(--noto-font);
   font-size: 18px;
-  text-align: center;
   text-overflow: ellipsis;
   word-break: break-all;
   overflow: hidden;
