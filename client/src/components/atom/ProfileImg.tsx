@@ -2,16 +2,16 @@ import { FC } from 'react';
 import styled from 'styled-components';
 import defaultImg from '../../assets/default.png';
 
-interface ProfileIconProps {
+interface ProfileImgProps {
   src?: string;
   width?: string;
 }
 
-const ProfileIcon: FC<ProfileIconProps> = ({ src = defaultImg, width }) => {
-  return <StyledProfileIcon src={src} width={width} />;
+const ProfileIcon: FC<ProfileImgProps> = ({ src = defaultImg, width }) => {
+  return <StyledProfileImg src={src} width={width} />;
 };
 
-export const StyledProfileIcon = styled.img`
+export const StyledProfileImg = styled.img`
   width: ${(props) => props.width || '100px'};
   border-radius: 100%;
 `;

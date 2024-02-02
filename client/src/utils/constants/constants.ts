@@ -13,3 +13,5 @@ export const categories = [
 ];
 
 export const searchOptions = ['상품명', '작성자명', '태그명'];
+
+export const sortOptions = ['최신순', '오래된순', '좋아요순'];

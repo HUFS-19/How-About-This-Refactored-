@@ -7,8 +7,12 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 const SearchBar = () => {
   return (
     <StyledSearchBar>
-      <StyledSearchIcon className='search-icon' icon={faSearch} />
-      <Input type='text' placeholder='검색어를 입력해주세요' />
+      <StyledSearchIcon icon={faSearch} />
+      <Input
+        type='text'
+        placeholder='검색어를 입력해주세요'
+        padding='9px 0 10px 40px'
+      />
     </StyledSearchBar>
   );
 };

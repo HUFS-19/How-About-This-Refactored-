@@ -4,11 +4,12 @@ import { eventFunction } from '../../utils/types/eventFunction';
 interface SelectProps {
   options: { value: string; name: string }[];
   onChange?: eventFunction;
+  width?: string;
 }
 
-const Select = ({ options, onChange }: SelectProps) => {
+const Select = ({ options, onChange, width }: SelectProps) => {
   return (
-    <StyledSelect onChange={onChange}>
+    <StyledSelect onChange={onChange} width={width}>
       {options.map((option) => {
         return <option value={option.value}>{option.name}</option>;
       })}
@@ -16,8 +17,8 @@ const Select = ({ options, onChange }: SelectProps) => {
   );
 };
 
-const StyledSelect = styled.select`
-  width: 150px;
+const StyledSelect = styled.select<{ width?: string }>`
+  width: ${({ width }) => width || '150px'};
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 15px;
