@@ -1,5 +1,7 @@
 package com.HUFS19.backend.product;
 
+import com.HUFS19.backend.category.Category;
+import com.HUFS19.backend.category.CategoryRepository;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +17,16 @@ class ProductServiceTest {
     @Autowired
     ProductRepository jpaProductRepository;
 
+    CategoryRepository categoryRepository;
     @Test
     void 상품_추가(){
-        Product product = new Product();
-        product.setCategory(1);
-        product.setDetail("상품설명");
-        product.setLink("www");
-        product.setMainImg("/main");
+        Category category = new Category("캠핑");
+//        Category savedCategory =
+//        Product product = new Product();
+//        product.setCategory(1);
+//        product.setDetail("상품설명");
+//        product.setLink("www");
+//        product.setMainImg("/main");
         //참조키가 있는 테이블 데이터는 참조하는 테이블 객체까지 넣어야 한다??
 //        product.setUser("testID");
     }
@@ -29,7 +34,7 @@ class ProductServiceTest {
     @Test
     void 상품아이디로_상품_찾기(){
         productService.findOne(1);
-
+        jpaProductRepository.findById(1);
     }
 
 
