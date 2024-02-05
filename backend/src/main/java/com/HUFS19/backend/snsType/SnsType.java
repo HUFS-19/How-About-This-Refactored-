@@ -1,9 +1,6 @@
 package com.HUFS19.backend.snsType;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +10,9 @@ import lombok.Setter;
 public class SnsType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int snsId;
-    private String snsName;
+    @Column(name = "sns_id")
+    private int id;
+
+    @Column(name = "sns_name")
+    private String name;
 }

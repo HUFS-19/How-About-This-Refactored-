@@ -13,7 +13,8 @@ public class UserInfo {
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
-    private String userIcon;
+    @Column(name = "user_icon")
+    private String icon;
     private String introduce;
     private String nickname;
 

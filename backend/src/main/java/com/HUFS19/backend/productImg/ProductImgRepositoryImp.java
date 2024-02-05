@@ -15,7 +15,7 @@ public class ProductImgRepositoryImp implements ProductImgRepository{
     @Override
     public int save(ProductImg productImg) {
         em.persist(productImg);
-        return productImg.getImgId();
+        return productImg.getId();
     }
 
     @Override
@@ -25,7 +25,7 @@ public class ProductImgRepositoryImp implements ProductImgRepository{
 
     @Override
     public Optional<ProductImg> findByProductId(int productId) {
-        List<ProductImg> result = em.createQuery("select pimg from ProductImg pimg where pimg.product.productId=:productId", ProductImg.class)
+        List<ProductImg> result = em.createQuery("select pimg from ProductImg pimg where pimg.product.id=:productId", ProductImg.class)
                 .setParameter("productId", productId)
                 .getResultList();
         return result.stream().findAny();

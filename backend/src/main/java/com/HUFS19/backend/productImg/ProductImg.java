@@ -11,10 +11,12 @@ import lombok.Setter;
 public class ProductImg {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int imgId;
+    @Column(name = "img_id")
+    private int id;
     @ManyToOne
     @JoinColumn(name="productId")
     private Product product;
     private String img;
-    private int imgOrder;
+    @Column(name = "img_order")
+    private int order;
 }

@@ -15,7 +15,7 @@ public class ChatRoomRepositoryImp implements ChatRoomRepository{
     @Override
     public int save(ChatRoom chatRoom) {
         em.persist(chatRoom);
-        return chatRoom.getChatRoomId();
+        return chatRoom.getId();
     }
 
     @Override
@@ -25,7 +25,7 @@ public class ChatRoomRepositoryImp implements ChatRoomRepository{
 
     @Override
     public Optional<ChatRoom> findByProductId(int productId) {
-        List<ChatRoom> result= em.createQuery("select c from ChatRoom c where c.product.productId = :productId", ChatRoom.class)
+        List<ChatRoom> result= em.createQuery("select c from ChatRoom c where c.product.id = :productId", ChatRoom.class)
                 .setParameter("productId", productId)
                 .getResultList();
         return result.stream().findAny();

@@ -2,7 +2,6 @@ package com.HUFS19.backend.user;
 
 import jakarta.persistence.EntityManager;
 
-import java.util.List;
 import java.util.Optional;
 
 public class UserRepositoryImp implements UserRepository{
@@ -15,7 +14,8 @@ public class UserRepositoryImp implements UserRepository{
     @Override
     public String save(User user) {
         em.persist(user);
-        return user.getUserId();
+        em.flush();
+        return user.getId();
     }
 
     @Override
@@ -24,8 +24,4 @@ public class UserRepositoryImp implements UserRepository{
         return Optional.ofNullable(em.find(User.class, userId));
     }
 
-    @Override
-    public Optional<User> findByName(String userName) {
-        return Optional.empty();
-    }
 }

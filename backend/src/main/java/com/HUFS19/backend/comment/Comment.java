@@ -16,7 +16,8 @@ import java.sql.Timestamp;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int commentId;
+    @Column(name = "comment_id")
+    private int id;
     private String content;
     @CreationTimestamp
     private Timestamp date;

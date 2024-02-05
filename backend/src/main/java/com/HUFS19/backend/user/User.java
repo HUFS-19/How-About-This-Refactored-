@@ -15,7 +15,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class User {
     @Id
-    private String userId;
+    @Column(name = "user_id")
+    private String id;
     private String password;
     private String salt;
 }

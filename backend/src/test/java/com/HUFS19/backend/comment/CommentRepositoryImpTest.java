@@ -1,7 +1,9 @@
-package com.HUFS19.backend.productImg;
+package com.HUFS19.backend.comment;
 
 import com.HUFS19.backend.product.ProductRepository;
 import com.HUFS19.backend.product.ProductRepositoryImp;
+import com.HUFS19.backend.user.UserRepository;
+import com.HUFS19.backend.user.UserRepositoryImp;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -12,28 +14,28 @@ import org.springframework.context.annotation.Import;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
+@Import({CommentRepositoryImp.class, ProductRepositoryImp.class, UserRepositoryImp.class})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import({ProductImgRepositoryImp.class, ProductRepositoryImp.class})
-class ProductImgRepositoryImpTest {
+class CommentRepositoryImpTest {
     @Autowired
     TestEntityManager testEM;
     @Autowired
-    ProductImgRepository productImgRepository;
+    CommentRepository commentRepository;
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    UserRepository userRepository;
 
     @Test
-    void save() {
-        ProductImg productImg = new ProductImg();
+    void 저장_조회() {
+        Comment comment = new Comment();
+        comment.setProduct(productRepository.findById(1).get());
+        comment.setUser(userRepository.findById("testID").get());
+        comment.setContent("상품에 대한 코멘트");
 
-        productImg.setProduct(productRepository.findById(1).get());
-        productImg.setOrder(5);
-        productImg.setImg("/img/001.jpg");
+        int id = commentRepository.save(comment);
+        Comment saved = commentRepository.findByID(id).get();
 
-        int productImgId = productImgRepository.save(productImg);
-        ProductImg foundProductImg = productImgRepository.findById(productImgId).get();
-
-        assertEquals(productImg.getOrder(), foundProductImg.getOrder());
-        assertEquals(productImg.getImg(), foundProductImg.getImg());
+        assertEquals(comment, saved);
     }
 }

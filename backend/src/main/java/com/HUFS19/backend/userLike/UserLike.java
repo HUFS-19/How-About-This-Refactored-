@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 @Setter
 public class UserLike {
     @EmbeddedId
-    private PKUserLike pkUserLike;
+    private PKUserLike pk;
     @CreationTimestamp
     private Timestamp date;
 

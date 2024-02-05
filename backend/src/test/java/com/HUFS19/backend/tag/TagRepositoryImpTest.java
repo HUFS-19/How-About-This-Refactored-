@@ -1,7 +1,8 @@
-package com.HUFS19.backend.productImg;
+package com.HUFS19.backend.tag;
 
 import com.HUFS19.backend.product.ProductRepository;
 import com.HUFS19.backend.product.ProductRepositoryImp;
+import com.HUFS19.backend.productImg.ProductImgRepositoryImp;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -12,28 +13,25 @@ import org.springframework.context.annotation.Import;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
+@Import({TagRepositoryImp.class, ProductRepositoryImp.class})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import({ProductImgRepositoryImp.class, ProductRepositoryImp.class})
-class ProductImgRepositoryImpTest {
+class TagRepositoryImpTest {
     @Autowired
     TestEntityManager testEM;
     @Autowired
-    ProductImgRepository productImgRepository;
+    TagRepository tagRepository;
     @Autowired
     ProductRepository productRepository;
 
     @Test
     void save() {
-        ProductImg productImg = new ProductImg();
+        Tag tag = new Tag();
+        tag.setName("태그");
+        tag.setProduct(productRepository.findById(1).get());
 
-        productImg.setProduct(productRepository.findById(1).get());
-        productImg.setOrder(5);
-        productImg.setImg("/img/001.jpg");
+        int id = tagRepository.save(tag);
+        Tag saved = tagRepository.findById(id).get();
 
-        int productImgId = productImgRepository.save(productImg);
-        ProductImg foundProductImg = productImgRepository.findById(productImgId).get();
-
-        assertEquals(productImg.getOrder(), foundProductImg.getOrder());
-        assertEquals(productImg.getImg(), foundProductImg.getImg());
+        assertEquals(tag, saved);
     }
 }

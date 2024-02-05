@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 public class UserSns {
     @EmbeddedId
-    private PKUserSns pkUserSns;
+    private PKUserSns pk;
 
     @Column(name = "sns_link")
     private String snsLink;

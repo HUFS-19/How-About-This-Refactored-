@@ -22,8 +22,10 @@ public class Product {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private int productId;
-    private String productName;
+    @Column(name = "product_id")
+    private int id;
+    @Column(name = "product_name")
+    private String name;
     private String detail;
     private String link;
     private String mainImg;

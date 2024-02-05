@@ -11,9 +11,11 @@ import lombok.Setter;
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int tagId;
+    @Column(name = "tag_id")
+    private int id;
     @ManyToOne
     @JoinColumn(name="productId")
     private Product product;
-    private String tagName;
+    @Column(name = "tag_name")
+    private String name;
 }

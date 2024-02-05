@@ -8,5 +8,4 @@ import java.util.Optional;
 public interface UserRepository {
     public String save(User user);
     public Optional<User> findById(String userId);
-    public Optional<User> findByName(String userName);
 }

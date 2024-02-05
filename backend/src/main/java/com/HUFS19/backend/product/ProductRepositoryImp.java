@@ -17,7 +17,7 @@ public class ProductRepositoryImp implements ProductRepository
     @Override
     public int save(Product product) {
         em.persist(product);
-        return product.getProductId();
+        return product.getId();
     }
 
     @Override
@@ -38,7 +38,7 @@ public class ProductRepositoryImp implements ProductRepository
 
     @Override
     public Optional<Product> findByName(String productName) {
-        List<Product> result = em.createQuery("select p from Product p where p.productName=:productName")
+        List<Product> result = em.createQuery("select p from Product p where p.name=:productName")
                 .setParameter("productName", productName)
                 .getResultList();
         return result.stream().findAny();

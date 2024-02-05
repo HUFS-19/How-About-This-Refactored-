@@ -13,7 +13,8 @@ import lombok.Setter;
 public class ChatRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int chatRoomId;
+    @Column(name = "chat_room_id")
+    private int id;
     @ManyToOne
     @JoinColumn(name="productId")
     private Product product;
