@@ -16,6 +16,7 @@ const CardBottom = ({ text }: CardBottomProps) => {
 const StyledCardBottom = styled.div`
   padding: 15px 18px;
   background-color: white;
+  text-align: center;
 `;
 
 export default CardBottom;

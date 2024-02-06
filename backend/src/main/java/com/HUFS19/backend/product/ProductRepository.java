@@ -7,11 +7,12 @@ import java.util.Optional;
 
 @Repository
 public interface ProductRepository {
-    Product save(Product product);
+    int save(Product product);
+    //구현 필요
 //    List<Product> findByCategory(int categoryId);
     List<Product> findAll(int categoryId);
 
-    Optional<Product> findById(int ProductId);
+    Optional<Product> findById(int productId);
 
-
+    Optional<Product> findByName(String productName);
 }

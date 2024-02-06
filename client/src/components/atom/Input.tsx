@@ -8,16 +8,21 @@ interface InputProps {
   onKeyDown?: eventFunction;
   value?: string;
   width?: string;
+  padding?: string;
 }
 
-const Input = ({
+type InputHTMLProps = React.InputHTMLAttributes<HTMLInputElement>;
+
+const Input: React.FC<InputProps & InputHTMLProps> = ({
   type,
   placeholder,
   onChange,
   onKeyDown,
   value,
   width,
-}: InputProps) => {
+  padding,
+  ...rest // Capture remaining props
+}) => {
   return (
     <StyledInput
       type={type}
@@ -26,15 +31,14 @@ const Input = ({
       onKeyDown={onKeyDown}
       value={value}
       width={width}
+      padding={padding}
     />
   );
 };
 
-const StyledInput = styled.input`
+const StyledInput = styled.input<InputProps>`
   width: ${({ width }) => (width ? width : '700px')};
-  padding-top: 9px;
-  padding-bottom: 10px;
-  padding-left: 40px;
+  padding: ${({ padding }) => (padding ? padding : '9px 0 10px 0')};
   background-color: var(--bg-grey-color);
   border: none;
   border-radius: 5px;

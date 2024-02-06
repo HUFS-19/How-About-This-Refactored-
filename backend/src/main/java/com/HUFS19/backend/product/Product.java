@@ -12,6 +12,12 @@ import java.sql.Timestamp;
 @Entity
 @Getter
 @Setter
+//getId가 아니라 getProductId로 접근해야 한다.
+//@Column(name-"product_id")
+//private String id;
+//형식으로 변경 고민해볼 것
+
+//전체적으로 @Column 추가
 public class Product {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
