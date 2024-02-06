@@ -1,51 +1,48 @@
 import styled from 'styled-components';
-import Title from '../atom/Title';
-import MediumText from '../atom/MediumText';
+import ProductInfoHeader from '../molecule/ProductInfoHeader';
+import ProductUserArea from '../molecule/ProductUserArea';
+import ProductButtonArea from '../molecule/ProductButtonArea';
 
-interface ProductInfoAreaProps {
-  productName: string;
+type ProductInfo = {
+  name: string;
+  detail: string;
+  mainImg: string;
   categoryName: string;
   tagNames: string[];
-}
+  likes: number;
+  userName: string;
+  userProfileImg: string;
+};
 
-const ProductInfoArea = ({
-  productName,
-  categoryName,
-  tagNames,
-}: ProductInfoAreaProps) => {
+const ProductInfoArea = (props: { productInfo: ProductInfo }) => {
+  const {
+    name,
+    detail,
+    mainImg,
+    categoryName,
+    tagNames,
+    likes,
+    userName,
+    userProfileImg,
+  } = props.productInfo;
+
   return (
     <StyledProductInfoArea>
-      <MediumText text={categoryName} />
-      <Title text={productName} />
-      <StyledTags>
-        {tagNames.map((tag) => (
-          <MediumText
-            text={'#' + tag}
-            color='var(--light-blue-color)'
-            fontSize='16px'
-          />
-        ))}
-      </StyledTags>
+      <ProductInfoHeader
+        categoryName={categoryName}
+        productName={name}
+        tagNames={tagNames}
+      />
+      <ProductUserArea userName={userName} userProfileImg={userProfileImg} />
+      <ProductButtonArea />
     </StyledProductInfoArea>
   );
 };
 
 const StyledProductInfoArea = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  > * {
-    margin-bottom: 14px;
-  }
-`;
-
-const StyledTags = styled.ul`
-  display: flex;
-  > * {
-    padding: 0px 3px;
-  }
+  width: 50%;
 `;
 
 export default ProductInfoArea;
