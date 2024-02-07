@@ -1,10 +1,10 @@
 import styled from 'styled-components';
-import LoginBox from '../organism/LoginBox';
+import JoinBox from '../organism/JoinBox';
 
-const LoginArea = () => {
+const JoinArea = () => {
   return (
     <StyledDiv>
-      <LoginBox />
+      <JoinBox />
     </StyledDiv>
   );
 };
@@ -15,4 +15,4 @@ const StyledDiv = styled.div`
   justify-content: center;
 `;
 
-export default LoginArea;
+export default JoinArea;
