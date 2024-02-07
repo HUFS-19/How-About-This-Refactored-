@@ -1,4 +1,6 @@
 package com.HUFS19.backend.message;
 
-public interface MessageRepository {
+import org.springframework.stereotype.Repository;
+
+@Repository public interface MessageRepository {
 }

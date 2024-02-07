@@ -13,24 +13,35 @@ public class ProductRepositoryImp implements ProductRepository
         this.em = em;
     }
 
-    @Override
-    public Product save(Product product) {
 
+    @Override
+    public int save(Product product) {
         em.persist(product);
-        return product;
+        return product.getProductId();
     }
 
     @Override
     public List<Product> findAll(int categoryId) {
-        return null;
+        return em.createQuery("select p from Product p", Product.class)
+                .getResultList();
+
     }
 
     @Override
-    public Optional<Product> findById(int ProductId) {
+    public Optional<Product> findById(int productId) {
 
-        List<Product> result = em.createQuery("select p from Product p where p.id = :ProductId", Product.class)
-                .setParameter("ProductId", ProductId)
+        List<Product> result = em.createQuery("select p from Product p where p.id = :productId", Product.class)
+                .setParameter("productId", productId)
                 .getResultList();
         return result.stream().findAny();
+    }
+
+    @Override
+    public Optional<Product> findByName(String productName) {
+        List<Product> result = em.createQuery("select p from Product p where p.productName=:productName")
+                .setParameter("productName", productName)
+                .getResultList();
+        return result.stream().findAny();
+
     }
 }
