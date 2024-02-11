@@ -306,3 +306,7 @@ INSERT INTO comment(user_id, product_id, content) values
                                                       ('testID', '1', '이거짱인듯.. 잘쓰고있어요'),
                                                       ('user4444', '1', '댓글뭐쓰지 아무튼 추천드립니다'),
                                                       ('lucky777', '1', '더쓸말도없다.... 위에 사람들 다 거짓말임 전 별로였어요');
+
+INSERT INTO chat_room(category_id, user_id, inquirer_id, product_id) values
+                                                      ('1', 'testID', 'user4444', '1')
+
