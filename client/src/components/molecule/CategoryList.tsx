@@ -2,24 +2,28 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { select } from '../../store/slice/categorySlice';
+import { getAllCateName } from '../../apis/api/categoryApi';
+import { useEffect, useState } from 'react';
 
 interface CategoryProps {
   cateId: number;
   cateName: string;
 }
 
-//todo: CategoryList 받아오기
-
 const CategoryList = () => {
   const { selectedId } = useSelector((state: RootState) => state.category);
   const dispatch = useDispatch();
 
-  const categories: CategoryProps[] = [
-    { cateId: 0, cateName: '전체' },
-    { cateId: 1, cateName: '패션' },
-    { cateId: 2, cateName: '뷰티' },
-    { cateId: 3, cateName: '가구' },
-  ];
+  const [categories, setCategories] = useState<CategoryProps[]>([]);
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const data = await getAllCateName();
+      setCategories(data);
+    };
+
+    getCategories();
+  }, []);
 
   const onClickCategory = (cateId: number) => {
     dispatch(select(cateId));
