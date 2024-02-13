@@ -46,6 +46,7 @@ const getButtonStyles = (props: StyledButtonProps) => {
       return `
         background-color: white;
         color: black;
+        border: 2px solid black;
       `;
     case 'grey':
       return `
