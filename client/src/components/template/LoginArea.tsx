@@ -10,7 +10,7 @@ const LoginArea = () => {
 };
 
 const StyledDiv = styled.div`
-  height: calc(100vh - 63px);
+  height: calc(100vh - 200px);
   display: flex;
   justify-content: center;
 `;
