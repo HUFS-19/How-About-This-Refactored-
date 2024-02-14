@@ -7,6 +7,7 @@ import com.HUFS19.backend.dto.product.CategoryproductsResponse;
 import com.HUFS19.backend.dto.product.ProductImgDto;
 import com.HUFS19.backend.repository.product.Product;
 import com.HUFS19.backend.service.ProductService;
+import com.HUFS19.backend.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,9 +18,11 @@ import java.util.Optional;
 @RequestMapping("/productAPI")
 public class ProductController {
     private final ProductService productService;
+    private final TagService tagService;
     @Autowired
-    public ProductController(ProductService productService){
+    public ProductController(ProductService productService, TagService tagService){
         this.productService=productService;
+        this.tagService = tagService;
     }
 
     @GetMapping("/product/{id}")
@@ -49,5 +52,13 @@ public class ProductController {
         }
         return ResponseUtils.ok(imgs);
 
+    }
+
+    @GetMapping("/{productId}/tags")
+    @ResponseBody
+    public ApiResponseDto getTags(@PathVariable("productId")int productId){
+        List<String> tags = tagService.getTags(productId);
+        //비어있어도 성공으로 전송?
+        return ResponseUtils.ok(tags);
     }
 }
