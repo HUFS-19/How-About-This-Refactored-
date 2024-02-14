@@ -8,6 +8,7 @@ interface ButtonProps {
   width?: string;
   height?: string;
   color?: 'black' | 'white' | 'grey';
+  style?: object;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -17,6 +18,7 @@ const Button: FC<ButtonProps> = ({
   width,
   height,
   color = 'black',
+  style,
 }) => {
   return (
     <StyledButton
@@ -25,6 +27,7 @@ const Button: FC<ButtonProps> = ({
       width={width}
       height={height}
       color={color}
+      style={style}
     >
       {text}
     </StyledButton>
@@ -43,6 +46,7 @@ const getButtonStyles = (props: StyledButtonProps) => {
       return `
         background-color: white;
         color: black;
+        border: 2px solid black;
       `;
     case 'grey':
       return `
