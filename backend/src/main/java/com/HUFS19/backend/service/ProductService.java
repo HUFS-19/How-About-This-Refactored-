@@ -1,8 +1,10 @@
 package com.HUFS19.backend.service;
 
-import com.HUFS19.backend.dto.product.ProductSummary;
+import com.HUFS19.backend.dto.product.ProductImgDto;
 import com.HUFS19.backend.repository.product.Product;
 import com.HUFS19.backend.repository.product.ProductRepository;
+import com.HUFS19.backend.repository.productImg.ProductImg;
+import com.HUFS19.backend.repository.productImg.ProductImgRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,9 +15,11 @@ import java.util.Optional;
 @Transactional
 public class ProductService {
     private final ProductRepository productRepository;
+    private final ProductImgRepository productImgRepository;
     @Autowired
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, ProductImgRepository productImgRepository) {
         this.productRepository = productRepository;
+        this.productImgRepository = productImgRepository;
     }
 
     public int addProduct(Product product) {
@@ -30,6 +34,10 @@ public class ProductService {
 
     public List<Product> findAll(){
         return productRepository.findAll(1);
+    }
+
+    public List<ProductImgDto> getImg(int productId){
+        return productImgRepository.findByProductId(productId);
     }
 
 //    public List<ProductSummary> getCategoryProducts(int category, String sort){

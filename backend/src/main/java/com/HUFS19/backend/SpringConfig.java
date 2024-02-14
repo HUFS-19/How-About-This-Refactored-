@@ -42,7 +42,7 @@ public class SpringConfig {
 
     @Bean
     public ProductService service(){
-        return new ProductService(productRepository());
+        return new ProductService(productRepository(), productImgRepository());
     }
     @Bean
     public UserService userService(){return new UserService(userRepository());}
