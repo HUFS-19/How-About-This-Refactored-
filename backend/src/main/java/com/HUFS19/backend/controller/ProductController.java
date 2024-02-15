@@ -43,22 +43,7 @@ public class ProductController {
 //        return categoryproductsResponse;
 //    }
 
-    @GetMapping("/{productId}/imgs")
-    @ResponseBody
-    public ApiResponseDto getProductimgs(@PathVariable("productId")int productId){
-        List<ProductImgDto> imgs = productService.getImg(productId);
-        if(imgs.isEmpty()){
-            return ResponseUtils.error(new ErrorResponse("상품 이미지를 찾을 수 없습니다."));
-        }
-        return ResponseUtils.ok(imgs);
 
-    }
 
-    @GetMapping("/{productId}/tags")
-    @ResponseBody
-    public ApiResponseDto getTags(@PathVariable("productId")int productId){
-        List<String> tags = tagService.getTags(productId);
-        //비어있어도 성공으로 전송?
-        return ResponseUtils.ok(tags);
-    }
+
 }

@@ -15,11 +15,9 @@ import java.util.Optional;
 @Transactional
 public class ProductService {
     private final ProductRepository productRepository;
-    private final ProductImgRepository productImgRepository;
     @Autowired
     public ProductService(ProductRepository productRepository, ProductImgRepository productImgRepository) {
         this.productRepository = productRepository;
-        this.productImgRepository = productImgRepository;
     }
 
     public int addProduct(Product product) {
@@ -36,9 +34,7 @@ public class ProductService {
         return productRepository.findAll(1);
     }
 
-    public List<ProductImgDto> getImg(int productId){
-        return productImgRepository.findByProductId(productId);
-    }
+
 
 //    public List<ProductSummary> getCategoryProducts(int category, String sort){
 //        if(category==1){
