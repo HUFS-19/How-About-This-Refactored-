@@ -1,18 +1,25 @@
+import { FC } from 'react';
 import styled from 'styled-components';
 
 interface TitleProps {
   text: string;
+  size?: string;
+  align?: string;
 }
 
-const Title = ({ text }: TitleProps) => {
-  return <StyledText>{text}</StyledText>;
+const Title: FC<TitleProps> = ({ text, size, align }) => {
+  return (
+    <StyledText size={size} align={align}>
+      {text}
+    </StyledText>
+  );
 };
 
-const StyledText = styled.p`
+const StyledText = styled.p<{ size?: string; align?: string }>`
   font-family: var(--gowun-font);
-  font-size: var(--title-size);
+  font-size: ${(props) => props.size || 'var(--title-size)'};
   font-weight: var(--title-weight);
-  text-align: center;
+  text-align: ${(props) => props.align || 'center'};
 `;
 
 export default Title;

@@ -7,13 +7,14 @@ interface ProfileImgProps {
   width?: string;
 }
 
-const ProfileIcon: FC<ProfileImgProps> = ({ src = defaultImg, width }) => {
+const ProfileImg: FC<ProfileImgProps> = ({ src = defaultImg, width }) => {
   return <StyledProfileImg src={src} width={width} />;
 };
 
 export const StyledProfileImg = styled.img`
   width: ${(props) => props.width || '100px'};
+  height: ${(props) => props.width || '100px'};
   border-radius: 100%;
 `;
 
-export default ProfileIcon;
+export default ProfileImg;
