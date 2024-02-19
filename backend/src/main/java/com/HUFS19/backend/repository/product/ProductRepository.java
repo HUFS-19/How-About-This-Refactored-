@@ -25,4 +25,5 @@ public interface ProductRepository {
 
     List<ProductSummary> findCategoryProducts(int categoryId, String sort);
 
+    List<Product> findByUserId(String userId);
 }

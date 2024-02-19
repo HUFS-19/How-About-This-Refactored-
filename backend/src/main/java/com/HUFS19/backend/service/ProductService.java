@@ -34,6 +34,9 @@ public class ProductService {
         return productRepository.findAll(1);
     }
 
+    public List<Product> getUserProducts(String userId) {
+        return productRepository.findByUserId(userId);
+    }
 
 
 //    public List<ProductSummary> getCategoryProducts(int category, String sort){

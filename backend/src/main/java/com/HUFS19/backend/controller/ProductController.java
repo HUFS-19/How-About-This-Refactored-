@@ -18,11 +18,9 @@ import java.util.Optional;
 @RequestMapping("/productAPI")
 public class ProductController {
     private final ProductService productService;
-    private final TagService tagService;
     @Autowired
     public ProductController(ProductService productService, TagService tagService){
         this.productService=productService;
-        this.tagService = tagService;
     }
 
     @GetMapping("/product/{id}")
@@ -34,6 +32,13 @@ public class ProductController {
         }
         return result.get();
     }
+
+    @GetMapping("/user/{userId}")
+    @ResponseBody
+    ApiResponseDto getUserProducts(@PathVariable("userId") String userId){
+        return ResponseUtils.ok(productService.getUserProducts(userId));
+    }
+
 
 //    @GetMapping("/productAPI/list")
 //    @ResponseBody

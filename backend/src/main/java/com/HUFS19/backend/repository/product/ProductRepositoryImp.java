@@ -2,6 +2,7 @@ package com.HUFS19.backend.repository.product;
 
 import com.HUFS19.backend.dto.product.ProductSummary;
 import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
@@ -10,11 +11,14 @@ import java.util.Optional;
 public class ProductRepositoryImp implements ProductRepository
 {
     private final EntityManager em;
-    private JPAQuery query;
+    private JPAQueryFactory query;
+
+    private QProduct product = QProduct.product;
+
 
     public ProductRepositoryImp(EntityManager em){
         this.em = em;
-        query = new JPAQuery(em);
+        query = new JPAQueryFactory(em);
 }
 
 
@@ -27,11 +31,6 @@ public class ProductRepositoryImp implements ProductRepository
 
     @Override
     public List<Product> findAll(int categoryId) {
-//        return em.createQuery("select p from Product p", Product.class)
-//                .getResultList();
-//
-        QProduct product = QProduct.product;
-
         return query.from(product).select(product).fetch();
     }
 
@@ -58,6 +57,11 @@ public class ProductRepositoryImp implements ProductRepository
         return em.createQuery("select P from Product p where p.name like :name", Product.class)
                 .setParameter("name", name)
                 .getResultList();
+    }
+
+    @Override
+    public List<Product> findByUserId(String userId) {
+        return query.selectFrom(product).where(product.user.id.eq(userId)).fetch();
     }
 
     @Override
