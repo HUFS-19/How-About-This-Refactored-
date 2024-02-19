@@ -1,5 +1,6 @@
 package com.HUFS19.backend.repository.category;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
@@ -7,9 +8,10 @@ import java.util.Optional;
 
 public class CategoryRepositoryImp implements CategoryRepository {
     private EntityManager em;
-
+    private JPAQueryFactory query;
     public CategoryRepositoryImp(EntityManager em){
         this.em=em;
+        this.query = new JPAQueryFactory(em);
     }
 
     @Override
@@ -20,11 +22,14 @@ public class CategoryRepositoryImp implements CategoryRepository {
 
     @Override
     public Optional<Category> findById(int categoryId) {
-//        List<Category> result = em.createQuery("select p from Product p where p.id = :categoryId", Category.class)
-//                .setParameter("categoryId", categoryId)
-//                .getResultList();
-//        return result.stream().findAny();
         return Optional.ofNullable(em.find(Category.class, categoryId));
+    }
+
+    @Override
+    public List<Category> getAll() {
+        QCategory category = QCategory.category;
+
+        return query.selectFrom(category).fetch();
     }
 
     @Override
@@ -37,10 +42,7 @@ public class CategoryRepositoryImp implements CategoryRepository {
 
     }
 
-//    public BooleanExpression eqCategory(int categoryId){
-//        if (findById(categoryId).isEmpty()){
-//            return null;
-//        }
-//        return Category.
-//    }
 }
+
+
+
