@@ -44,9 +44,5 @@ public class ProductImgRepositoryImp implements ProductImgRepository{
                 fetch();
 
         return imgDtos;
-//        List<ProductImg> result = em.createQuery("select pimg from ProductImg pimg where pimg.product.id=:productId", ProductImg.class)
-//                .setParameter("productId", productId)
-//                .getResultList();
-//        return result.stream().findAny();
     }
 }
