@@ -11,6 +11,6 @@ public interface ChatRoomRepository {
     int save(ChatRoom chatRoom);
     Optional<ChatRoom> findById(int id);
     Optional<ChatRoom> findByProductId(int productId);
-    List<ChatRoom> findByUserId(String userId);
+    List<ChatRoomDetail> findByUserId(String userId);
     Optional<ChatRoomDetail> findByProductInquirer(int productId, String inquirerId);
 }

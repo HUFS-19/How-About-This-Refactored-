@@ -12,11 +12,11 @@ import org.springframework.expression.spel.ast.Projection;
 import java.util.List;
 import java.util.Optional;
 
-//findChatRoomByUserId() DTO 컬럼만 추출하면 userId, inquirerId null로 뜨는 문제
-
 public class ChatRoomRepositoryImp implements ChatRoomRepository{
     private final EntityManager em;
     private final JPAQueryFactory query;
+
+    private QChatRoom chatRoom = QChatRoom.chatRoom;
 
     public ChatRoomRepositoryImp(EntityManager em){
         this.em=em;
@@ -43,48 +43,42 @@ public class ChatRoomRepositoryImp implements ChatRoomRepository{
     }
 
     @Override
-    public List<ChatRoom> findByUserId(String userId) {
-        QChatRoom chatRoom = QChatRoom.chatRoom;
+    public List<ChatRoomDetail> findByUserId(String userId) {
 
-        return query.selectFrom(chatRoom).where((chatRoom.user.id.eq(userId))
-                        .or(chatRoom.inquirer.id.eq(userId)))
-                .fetch();
-
-//        List<ChatRoomDetail>chatRoomDtos=query
-//                .select(Projections.bean(
-//                        ChatRoomDetail.class,
-//                        chatRoom.id,
-//                        chatRoom.user.id,
-//                        chatRoom.inquirer.id,
-//                        chatRoom.category.categoryId,
-//                        chatRoom.product.id))
-//                .from(chatRoom)
-//                .where((chatRoom.user.id.eq(userId))
-//                        .or(chatRoom.inquirer.id.eq(userId)))
-//                .fetch();
-//        return chatRoomDtos;
-    }
-
-    @Override
-    public Optional<ChatRoomDetail> findByProductInquirer(int productId, String inquirerId) {
-        QChatRoom chatRoom = QChatRoom.chatRoom;
-
-        return Optional.ofNullable(
-                query.select(Projections.bean(ChatRoomDetail.class,
+        return query.select(
+                Projections.bean(
+                        ChatRoomDetail.class,
                         chatRoom.id,
                         chatRoom.user.id.as("userId"),
                         chatRoom.inquirer.id.as("inquirerId"),
                         chatRoom.category.id.as("categoryId"),
                         chatRoom.product.id.as("productId")
-                )).from(chatRoom).where(chatRoom.id.eq(1)).fetchOne());
-//        return Optional.ofNullable(
-//                query.select(Projections.bean(ChatRoomDetail.class,
-//                chatRoom.id,
-//                chatRoom.user.id,
-//                chatRoom.inquirer.id,
-//                chatRoom.category.categoryId,
-//                chatRoom.product.id
-//                )).from(chatRoom).where((chatRoom.product.id.eq(productId)).and(chatRoom.inquirer.id.eq(inquirerId))).fetchOne()
-//                    );
+                ))
+                .from(chatRoom)
+                .where(
+                        (chatRoom.user.id.eq(userId))
+                        .or(chatRoom.inquirer.id.eq(userId)))
+                .fetch();
+    }
+
+    @Override
+    public Optional<ChatRoomDetail> findByProductInquirer(int productId, String inquirerId) {
+
+        return Optional.ofNullable(
+                query.select(
+                        Projections.bean(
+                                ChatRoomDetail.class,
+                                chatRoom.id,
+                                chatRoom.user.id.as("userId"),
+                                chatRoom.inquirer.id.as("inquirerId"),
+                                chatRoom.category.id.as("categoryId"),
+                                chatRoom.product.id.as("productId")
+                        ))
+                        .from(chatRoom)
+                        .where(
+                                (chatRoom.product.id.eq(productId))
+                                .and(chatRoom.inquirer.id.eq(inquirerId))
+                        ).fetchOne());
+
     }
 }

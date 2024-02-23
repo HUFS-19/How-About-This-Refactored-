@@ -19,7 +19,7 @@ public class ChatRoomService {
         this.chatRoomRepository=chatRoomRepository;
     }
 
-    public List<ChatRoom> getChatRoomList(String userId){
+    public List<ChatRoomDetail> getChatRoomList(String userId){
         return chatRoomRepository.findByUserId(userId);
     }
 
