@@ -17,8 +17,6 @@ import java.util.Optional;
 public class ChatRoomRepositoryImp implements ChatRoomRepository{
     private final EntityManager em;
     private final JPAQueryFactory query;
-    private QChatRoom chatRoom = QChatRoom.chatRoom;
-
 
     public ChatRoomRepositoryImp(EntityManager em){
         this.em=em;
@@ -46,10 +44,12 @@ public class ChatRoomRepositoryImp implements ChatRoomRepository{
 
     @Override
     public List<ChatRoom> findByUserId(String userId) {
+        QChatRoom chatRoom = QChatRoom.chatRoom;
+
         return query.selectFrom(chatRoom).where((chatRoom.user.id.eq(userId))
                         .or(chatRoom.inquirer.id.eq(userId)))
                 .fetch();
-//
+
 //        List<ChatRoomDetail>chatRoomDtos=query
 //                .select(Projections.bean(
 //                        ChatRoomDetail.class,
@@ -67,14 +67,24 @@ public class ChatRoomRepositoryImp implements ChatRoomRepository{
 
     @Override
     public Optional<ChatRoomDetail> findByProductInquirer(int productId, String inquirerId) {
+        QChatRoom chatRoom = QChatRoom.chatRoom;
+
         return Optional.ofNullable(
                 query.select(Projections.bean(ChatRoomDetail.class,
-                chatRoom.id,
-                chatRoom.user.id,
-                chatRoom.inquirer.id,
-                chatRoom.category.categoryId,
-                chatRoom.product.id
-                )).from(chatRoom).where((chatRoom.product.id.eq(productId)).and(chatRoom.inquirer.id.eq(inquirerId))).fetchOne()
-                    );
+                        chatRoom.id,
+                        chatRoom.user.id.as("userId"),
+                        chatRoom.inquirer.id.as("inquirerId"),
+                        chatRoom.category.id.as("categoryId"),
+                        chatRoom.product.id.as("productId")
+                )).from(chatRoom).where(chatRoom.id.eq(1)).fetchOne());
+//        return Optional.ofNullable(
+//                query.select(Projections.bean(ChatRoomDetail.class,
+//                chatRoom.id,
+//                chatRoom.user.id,
+//                chatRoom.inquirer.id,
+//                chatRoom.category.categoryId,
+//                chatRoom.product.id
+//                )).from(chatRoom).where((chatRoom.product.id.eq(productId)).and(chatRoom.inquirer.id.eq(inquirerId))).fetchOne()
+//                    );
     }
 }

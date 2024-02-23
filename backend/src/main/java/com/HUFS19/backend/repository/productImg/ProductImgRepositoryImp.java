@@ -36,7 +36,7 @@ public class ProductImgRepositoryImp implements ProductImgRepository{
         List<ProductImgDto> imgDtos = query.select(Projections.bean(
                 ProductImgDto.class,
                 productImg.id,
-                productImg.product.id,
+                productImg.product.id.as("productId"),
                 productImg.order,
                 productImg.img))
                 .from(productImg)
