@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.security.spec.AlgorithmParameterSpec;
+
 @Controller
 @RequestMapping("/chatRoomApi")
 public class ChatRoomController {
@@ -23,8 +25,15 @@ public class ChatRoomController {
 
     @GetMapping("/{userId}/chatRoomLIst")
     @ResponseBody
-    public ApiResponseDto getChatroomList(@PathVariable("userId") String userId){
+    public ApiResponseDto getChatRoomList(@PathVariable("userId") String userId){
        return ResponseUtils.ok(chatRoomService.getChatRoomList(userId));
     }
+
+    @GetMapping("/{productId}/chat/{inquirerId}")
+    @ResponseBody
+    public ApiResponseDto getChatRoom(@PathVariable("productId") int productId, @PathVariable("inquirerId") String inquirerId){
+        return ResponseUtils.ok((chatRoomService.getChatRoom(productId, inquirerId)));
+    }
+
 
 }

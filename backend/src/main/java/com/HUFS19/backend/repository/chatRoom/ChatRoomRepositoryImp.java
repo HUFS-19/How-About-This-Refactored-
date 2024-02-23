@@ -17,6 +17,8 @@ import java.util.Optional;
 public class ChatRoomRepositoryImp implements ChatRoomRepository{
     private final EntityManager em;
     private final JPAQueryFactory query;
+    private QChatRoom chatRoom = QChatRoom.chatRoom;
+
 
     public ChatRoomRepositoryImp(EntityManager em){
         this.em=em;
@@ -43,9 +45,7 @@ public class ChatRoomRepositoryImp implements ChatRoomRepository{
     }
 
     @Override
-    public List<ChatRoom> findChatRoomByUserId(String userId) {
-        QChatRoom chatRoom = QChatRoom.chatRoom;
-
+    public List<ChatRoom> findByUserId(String userId) {
         return query.selectFrom(chatRoom).where((chatRoom.user.id.eq(userId))
                         .or(chatRoom.inquirer.id.eq(userId)))
                 .fetch();
@@ -63,5 +63,18 @@ public class ChatRoomRepositoryImp implements ChatRoomRepository{
 //                        .or(chatRoom.inquirer.id.eq(userId)))
 //                .fetch();
 //        return chatRoomDtos;
+    }
+
+    @Override
+    public Optional<ChatRoomDetail> findByProductInquirer(int productId, String inquirerId) {
+        return Optional.ofNullable(
+                query.select(Projections.bean(ChatRoomDetail.class,
+                chatRoom.id,
+                chatRoom.user.id,
+                chatRoom.inquirer.id,
+                chatRoom.category.categoryId,
+                chatRoom.product.id
+                )).from(chatRoom).where((chatRoom.product.id.eq(productId)).and(chatRoom.inquirer.id.eq(inquirerId))).fetchOne()
+                    );
     }
 }

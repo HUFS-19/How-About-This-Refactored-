@@ -28,6 +28,6 @@ public class ChatRoom {
     private Category category;
 
     @ManyToOne
-    @JoinColumn(name="inquirerd")
+    @JoinColumn(name="inquirer_id")
     private User inquirer;
 }

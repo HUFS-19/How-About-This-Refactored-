@@ -30,7 +30,7 @@ public class ProductImgController {
     public ApiResponseDto getProductimgs(@PathVariable("productId")int productId){
         List<ProductImgDto> imgs = productImgService.getImg(productId);
         if(imgs.isEmpty()){
-            return ResponseUtils.error(new ErrorResponse("상품 이미지를 찾을 수 없습니다."));
+            throw new IllegalArgumentException();
         }
         return ResponseUtils.ok(imgs);
 
