@@ -51,8 +51,9 @@ public class ChatRoomRepositoryImp implements ChatRoomRepository{
                         chatRoom.id,
                         chatRoom.user.id.as("userId"),
                         chatRoom.inquirer.id.as("inquirerId"),
-                        chatRoom.category.id.as("categoryId"),
-                        chatRoom.product.id.as("productId")
+                        chatRoom.product.id.as("productId"),
+                        chatRoom.product.name.as("productName")
+
                 ))
                 .from(chatRoom)
                 .where(

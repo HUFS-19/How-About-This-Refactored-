@@ -1,5 +1,7 @@
 package com.HUFS19.backend.repository.message;
 
+import com.HUFS19.backend.dto.message.LastMessageDto;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
