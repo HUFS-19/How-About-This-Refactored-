@@ -1,8 +1,5 @@
 package com.HUFS19.backend.repository.category;
 
-import com.HUFS19.backend.repository.category.Category;
-import com.HUFS19.backend.repository.category.CategoryRepository;
-import com.HUFS19.backend.repository.category.CategoryRepositoryImp;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -31,7 +28,7 @@ class CategoryRepositoryImpTest {
         int categoryId = categoryRepository.save(category);
         Category foundCategory = categoryRepository.findById(categoryId).get();
 
-        assertEquals(foundCategory.getCategoryName(), category.getCategoryName());
+        assertEquals(foundCategory.getName(), category.getName());
     }
 
 }

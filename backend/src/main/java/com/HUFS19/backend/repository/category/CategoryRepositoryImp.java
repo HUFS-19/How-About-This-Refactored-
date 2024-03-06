@@ -17,7 +17,7 @@ public class CategoryRepositoryImp implements CategoryRepository {
     @Override
     public int save(Category category) {
         em.persist(category);
-        return category.getCategoryId();
+        return category.getId();
     }
 
     @Override
@@ -34,7 +34,7 @@ public class CategoryRepositoryImp implements CategoryRepository {
 
     @Override
     public Optional<Category> findByName(String categoryName) {
-        List<Category> result = em.createQuery("select c from Category c where c.categoryName = :categoryName", Category.class)
+        List<Category> result = em.createQuery("select c from Category c where c.name = :categoryName", Category.class)
                 .setParameter("categoryName", categoryName)
                 .getResultList();
 

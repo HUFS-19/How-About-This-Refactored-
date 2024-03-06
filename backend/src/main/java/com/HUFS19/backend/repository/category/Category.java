@@ -1,9 +1,6 @@
 package com.HUFS19.backend.repository.category;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,10 +12,14 @@ import lombok.Setter;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int categoryId;
-    private String categoryName;
 
-    public Category (String categoryName){
-        this.categoryName=categoryName;
+    @Column(name="category_id")
+    private int id;
+
+    @Column(name="category_name")
+    private String name;
+
+    public Category (String name){
+        this.name =name;
     }
 }

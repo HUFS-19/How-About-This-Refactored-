@@ -13,6 +13,8 @@ import java.util.Optional;
 public class ProductImgRepositoryImp implements ProductImgRepository{
     private EntityManager em;
     private JPAQueryFactory query;
+    private QProductImg productImg = QProductImg.productImg;
+
     public ProductImgRepositoryImp(EntityManager em){
         this.em=em;
         query = new JPAQueryFactory(em);
@@ -32,21 +34,18 @@ public class ProductImgRepositoryImp implements ProductImgRepository{
 
     @Override
     public List<ProductImgDto> findByProductId(int productId) {
-        QProductImg productImg = QProductImg.productImg;
-        List<ProductImgDto> imgDtos = query.select(Projections.bean(
-                ProductImgDto.class,
-                productImg.id,
-                productImg.product.id,
-                productImg.order,
-                productImg.img))
-                .from(productImg)
-                .where(productImg.product.id.eq(productId)).
-                fetch();
 
-        return imgDtos;
-//        List<ProductImg> result = em.createQuery("select pimg from ProductImg pimg where pimg.product.id=:productId", ProductImg.class)
-//                .setParameter("productId", productId)
-//                .getResultList();
-//        return result.stream().findAny();
+        return query.select(
+                Projections.bean(
+                        ProductImgDto.class,
+                        productImg.id,
+                        productImg.product.id.as("productId"),
+                        productImg.order,
+                        productImg.img
+                ))
+                .from(productImg)
+                .where(productImg.product.id.eq(productId))
+                .fetch();
+
     }
 }

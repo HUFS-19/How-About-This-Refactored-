@@ -1,15 +1,26 @@
 package com.HUFS19.backend.repository.chatRoom;
 
+import com.HUFS19.backend.dto.chatRoom.ChatRoomDetail;
+import com.HUFS19.backend.dto.product.ProductImgDto;
+import com.HUFS19.backend.repository.productImg.QProductImg;
+import com.querydsl.core.types.Projections;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import jakarta.persistence.EntityManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.spel.ast.Projection;
 
 import java.util.List;
 import java.util.Optional;
 
 public class ChatRoomRepositoryImp implements ChatRoomRepository{
-    private EntityManager em;
+    private final EntityManager em;
+    private final JPAQueryFactory query;
+
+    private QChatRoom chatRoom = QChatRoom.chatRoom;
 
     public ChatRoomRepositoryImp(EntityManager em){
         this.em=em;
+        query = new JPAQueryFactory(em);
     }
 
     @Override
@@ -29,5 +40,46 @@ public class ChatRoomRepositoryImp implements ChatRoomRepository{
                 .setParameter("productId", productId)
                 .getResultList();
         return result.stream().findAny();
+    }
+
+    @Override
+    public List<ChatRoomDetail> findByUserId(String userId) {
+
+        return query.select(
+                Projections.bean(
+                        ChatRoomDetail.class,
+                        chatRoom.id,
+                        chatRoom.user.id.as("userId"),
+                        chatRoom.inquirer.id.as("inquirerId"),
+                        chatRoom.product.id.as("productId"),
+                        chatRoom.product.name.as("productName")
+
+                ))
+                .from(chatRoom)
+                .where(
+                        (chatRoom.user.id.eq(userId))
+                        .or(chatRoom.inquirer.id.eq(userId)))
+                .fetch();
+    }
+
+    @Override
+    public Optional<ChatRoomDetail> findByProductInquirer(int productId, String inquirerId) {
+
+        return Optional.ofNullable(
+                query.select(
+                        Projections.bean(
+                                ChatRoomDetail.class,
+                                chatRoom.id,
+                                chatRoom.user.id.as("userId"),
+                                chatRoom.inquirer.id.as("inquirerId"),
+                                chatRoom.category.id.as("categoryId"),
+                                chatRoom.product.id.as("productId")
+                        ))
+                        .from(chatRoom)
+                        .where(
+                                (chatRoom.product.id.eq(productId))
+                                .and(chatRoom.inquirer.id.eq(inquirerId))
+                        ).fetchOne());
+
     }
 }
