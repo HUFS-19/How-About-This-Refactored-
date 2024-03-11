@@ -25,7 +25,7 @@ public class MessageController {
         return ResponseUtils.ok(messageService.getLastMessage(chatroomId));
     }
 
-    @GetMapping("/messageAPI/chatroom/{chatroomId}")
+    @GetMapping("/chatroom/{chatroomId}")
     @ResponseBody
     public ApiResponseDto getRecentMessage(@PathVariable("chatroomId")int chatroomId){
         return ResponseUtils.ok(messageService.getAllMessage(chatroomId));

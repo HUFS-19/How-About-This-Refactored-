@@ -39,6 +39,11 @@ public class ProductController {
         return ResponseUtils.ok(productService.getUserProducts(userId));
     }
 
+    @GetMapping("/like")
+    @ResponseBody
+    ApiResponseDto addLike() {
+        return ResponseUtils.ok("토큰 검증됨");
+    }
 
 //    @GetMapping("/productAPI/list")
 //    @ResponseBody

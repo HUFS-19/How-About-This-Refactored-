@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.security.spec.AlgorithmParameterSpec;
 import java.util.List;
 
 @Controller
@@ -32,7 +31,7 @@ public class ChatRoomController {
     @ResponseBody
     public ApiResponseDto getChatRoomList(@PathVariable("userId") String userId){
         List<ChatRoomDetail> chatRoomList=chatRoomService.getChatRoomList(userId);
-        chatRoomList.forEach(r->r.setLastMessageDto(messageService.getLastMessage(r.getId())));
+        chatRoomList.forEach(r->r.setLastMessage(messageService.getLastMessage(r.getId())));
 
         return ResponseUtils.ok(chatRoomList);
     }
