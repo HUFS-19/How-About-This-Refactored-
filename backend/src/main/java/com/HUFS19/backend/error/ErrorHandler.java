@@ -13,6 +13,7 @@ public class ErrorHandler {
     @ExceptionHandler
     public ApiResponseDto handleUserConflict(CustumException e){
         log.warn("handleUserConflict", e);
+        System.out.println("errorHandler excute!");
         return makeResponse(e.getErrorCode());
 
     }

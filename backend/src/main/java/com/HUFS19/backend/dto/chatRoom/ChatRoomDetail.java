@@ -12,5 +12,5 @@ public class ChatRoomDetail {
     private String inquirerId;
     private int productId;
     private String productName;
-    private LastMessageDto lastMessageDto;
+    private LastMessageDto lastMessage;
 }

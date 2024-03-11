@@ -1,4 +1,4 @@
-package com.HUFS19.backend;
+package com.HUFS19.backend.config;
 
 import com.HUFS19.backend.repository.category.CategoryRepository;
 import com.HUFS19.backend.repository.category.CategoryRepositoryImp;
