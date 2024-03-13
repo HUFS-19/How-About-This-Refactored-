@@ -63,18 +63,10 @@ public class ChatRoomRepositoryImp implements ChatRoomRepository{
     }
 
     @Override
-    public Optional<ChatRoomDetail> findByProductInquirer(int productId, String inquirerId) {
+    public Optional<Integer> findByProductInquirer(int productId, String inquirerId) {
 
         return Optional.ofNullable(
-                query.select(
-                        Projections.bean(
-                                ChatRoomDetail.class,
-                                chatRoom.id,
-                                chatRoom.user.id.as("userId"),
-                                chatRoom.inquirer.id.as("inquirerId"),
-                                chatRoom.category.id.as("categoryId"),
-                                chatRoom.product.id.as("productId")
-                        ))
+                query.select(chatRoom.id)
                         .from(chatRoom)
                         .where(
                                 (chatRoom.product.id.eq(productId))
