@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MessageController {
     MessageService messageService;
 
-
     public MessageController(MessageService messageService){
         this.messageService = messageService;
     }

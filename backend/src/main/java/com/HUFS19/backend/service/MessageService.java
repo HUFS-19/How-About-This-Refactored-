@@ -1,6 +1,8 @@
 package com.HUFS19.backend.service;
 
+import com.HUFS19.backend.common.util.DateConvertUtils;
 import com.HUFS19.backend.dto.message.LastMessageDto;
+import com.HUFS19.backend.dto.message.MessageDto;
 import com.HUFS19.backend.repository.message.Message;
 import com.HUFS19.backend.repository.message.MessageRepository;
 import jakarta.transaction.Transactional;
@@ -20,37 +22,22 @@ public class MessageService {
         this.messageRepository = messageRepository;
     }
 
-    public List<Message> getAllMessage(int ChatRoomId){
-        return messageRepository.findAllByChatRoom(ChatRoomId);
-    };
+    public List<MessageDto> getAllMessage(int ChatRoomId){
+        List<Message> messageList= messageRepository.findAllByChatRoom(ChatRoomId);
+        return messageList.stream().map(message -> new MessageDto(
+                message.getContent(),
+                message.getSender().getId(),
+                DateConvertUtils.getDate(message.getTime()),
+                DateConvertUtils.getTime(message.getTime())
+        )).toList();
+    }
 
     public LastMessageDto getLastMessage(int ChatRoomId) {
          Optional<Message> lastMessage = messageRepository.findLastByChatRoom(ChatRoomId);
 
-        return lastMessage.map(message -> new LastMessageDto(timeStampToString(message.getTime()), message.getContent()))
+        return lastMessage.map(message -> new LastMessageDto(DateConvertUtils.getDate(message.getTime()), message.getContent()))
                 .orElseGet(() -> new LastMessageDto("", "최근 메세지를 확인할 수 없습니다."));
 
-//        if (lastMessage.isPresent()){
-//            return new LastMessageDto(timeStampToString(lastMessage.get().getTime()), lastMessage.get().getContent());
-//        }
-//        else{
-//            return new LastMessageDto("", "최근 메세지를 확인할 수 없습니다.");
-//        }
     }
 
-    public String timeStampToString(Timestamp timestamp){
-        String timeString = new SimpleDateFormat("yyyy/MM/dd").format(timestamp);
-
-        String[] timeArray = timeString.split("/");
-        List<String> timeList= new ArrayList<>(Arrays.asList(timeArray));
-
-        timeList.replaceAll(s->Integer.toString(Integer.parseInt(s)));
-        timeList.add(1, "년 ");
-        timeList.add(3, "월 ");
-        timeList.add( "일");
-
-        String resultString = String.join("", timeList);
-
-        return resultString;
-    }
 }

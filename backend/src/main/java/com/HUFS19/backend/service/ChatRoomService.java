@@ -1,6 +1,8 @@
 package com.HUFS19.backend.service;
 
 import com.HUFS19.backend.dto.chatRoom.ChatRoomDetail;
+import com.HUFS19.backend.error.CustumException;
+import com.HUFS19.backend.error.ErrorCode;
 import com.HUFS19.backend.repository.category.Category;
 import com.HUFS19.backend.repository.chatRoom.ChatRoom;
 import com.HUFS19.backend.repository.chatRoom.ChatRoomRepository;
@@ -23,8 +25,9 @@ public class ChatRoomService {
         return chatRoomRepository.findByUserId(userId);
     }
 
-    public ChatRoomDetail getChatRoom(int productId, String inquirerId) {
-        ChatRoomDetail chatRoomDetail = chatRoomRepository.findByProductInquirer(productId, inquirerId).orElseThrow(()->new IllegalArgumentException("채팅방이 없습니다."));
-        return chatRoomDetail;
+    public int getChatRoom(int productId, String inquirerId) {
+        int chatroomId = chatRoomRepository.findByProductInquirer(productId, inquirerId)
+                .orElseThrow(()->new CustumException(ErrorCode.MISSING_CHATROOM));
+        return chatroomId;
     }
 }
