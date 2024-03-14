@@ -9,7 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.AbstractUrlBasedView;
 
-@Controller
+import java.security.Principal;
+import java.util.Objects;
+
+@RestController
 //@RequestMapping("/authAPI")
 @RequestMapping("/userAPI")
 public class AuthController {
@@ -19,19 +22,24 @@ public class AuthController {
         this.userService = userService;
     }
 
-    @ResponseBody
     @PostMapping("/join")
     public ApiResponseDto join(JoinDto joinDto){
         userService.joinProcess(joinDto);
         return ResponseUtils.ok("join success");
     }
 
-    @ResponseBody
     @PostMapping("/login")
     public ApiResponseDto login(JoinDto joinDto){
-//        System.out.println("!!!!!!!!!!!!!!!!!!");
-
         return ResponseUtils.ok("Developing");
+    }
+
+    @GetMapping("/checkLogin/{userId}")
+    public ApiResponseDto checkLoginState(@PathVariable("userId") String userId, Principal principal){
+
+        if (Objects.equals(principal.getName(), userId)){
+            return ResponseUtils.ok(true);
+        }
+        return ResponseUtils.ok(false);
     }
 }
 
